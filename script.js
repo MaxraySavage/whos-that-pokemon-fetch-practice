@@ -60,7 +60,7 @@ fetch(testURL).then((response) => response.json()).then((jsonData) =>{
     pokeInfo.number = jsonData.id;
     console.log(pokemonSprite);
     const pokeImage = new Image();
-    pokeInfoDisplay.crossOrigin = 'Anonymous';
+    pokeImage.crossOrigin = 'Anonymous';
     pokeImage.onload = drawToCanvas;
     pokeImage.src = pokemonSprite;
 });
