@@ -14,6 +14,9 @@ function drawToCanvas() {
     // given in the constructor
     ctx.drawImage(this, 0, 0);
     
+    //save canvas state
+    canvas.save();
+
     // To use the custom size we'll have to specify the scale parameters
     // using the element's width and height properties - lets draw one
     // on top in the corner:
@@ -34,6 +37,7 @@ function canvasToSilhouette() {
         }
     }
     ctx.putImageData(imageData, 0, 0);
+    canvas.onclick = this.restore();
 }
 
 
@@ -41,10 +45,6 @@ fetch(testURL).then((response) => response.json()).then((jsonData) =>{
     pokemonSprite = jsonData.sprites.front_default;
     console.log(pokemonSprite);
     const pokeImage = new Image();
-    pokeImage.onload = () => {
-        drawToCanvas();
-        canvas.save();
-    }
+    pokeImage.onload = drawToCanvas;
     pokeImage.src = pokemonSprite;
-
 });
