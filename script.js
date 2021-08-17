@@ -21,6 +21,22 @@ function drawToCanvas() {
 }
 
 
+// from https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
+function canvasToSilhouette() {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+        //if pixel alpha is greater than 0, make the pixel black
+        if(data[i+3] > 0) {
+            data[i]     = 0; // red
+            data[i + 1] = 0; // green
+            data[i + 2] = 0; // blue
+        }
+    }
+    ctx.putImageData(imageData, 0, 0);
+}
+
+
 fetch(testURL).then((response) => response.json()).then((jsonData) =>{
     pokemonSprite = jsonData.sprites.front_default;
     console.log(pokemonSprite);
