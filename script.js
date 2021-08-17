@@ -39,7 +39,7 @@ function canvasToSilhouette() {
         }
     }
     ctx.putImageData(imageData, 0, 0);
-    canvas.onclick = ctx.putImageData(originalImageData, 0, 0);
+    // canvas.onclick = ctx.putImageData(originalImageData, 0, 0);
 }
 
 
