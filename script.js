@@ -2,10 +2,10 @@ testURL = 'https://pokeapi.co/api/v2/pokemon/ditto';
 
 const canvasHandler = {
     canvas: document.getElementById('main-canvas'),
-    ctx: this.canvas.getContext("2d");
+    ctx: this.canvas.getContext("2d"),
     drawImage: function(imageElement) {
         this.ctx.drawImage(imageElement, 10, 10);
-    }
+    },
 };
 
 
