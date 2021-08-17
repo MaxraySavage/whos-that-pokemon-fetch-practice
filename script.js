@@ -5,7 +5,7 @@ let testURL = `https://pokeapi.co/api/v2/pokemon/${pokeNumber}`;
 
 const canvas = document.getElementById('main-canvas');
 const ctx = canvas.getContext('2d');
-
+const pokeInfo = document.getElementById('poke-info-display');
 
 // from https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
 function canvasToSilhouette() {
