@@ -13,9 +13,7 @@ function drawToCanvas() {
     // Will draw the image as 300x227, ignoring the custom size of 60x45
     // given in the constructor
     ctx.drawImage(this, 0, 0);
-    
-    //save canvas state
-    canvas.save();
+
 
     // To use the custom size we'll have to specify the scale parameters
     // using the element's width and height properties - lets draw one
@@ -27,6 +25,7 @@ function drawToCanvas() {
 // from https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
 function canvasToSilhouette() {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
     for (let i = 0; i < data.length; i += 4) {
         //if pixel alpha is greater than 0, make the pixel black
@@ -37,7 +36,7 @@ function canvasToSilhouette() {
         }
     }
     ctx.putImageData(imageData, 0, 0);
-    canvas.onclick = this.restore();
+    canvas.onclick = ctx.putImageData(originalImageData, 0, 0);
 }
 
 
