@@ -52,7 +52,7 @@ function drawToCanvas() {
 
 
 
-
+// working with CORS https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
 
 fetch(testURL).then((response) => response.json()).then((jsonData) =>{
     const pokemonSprite = jsonData.sprites.front_default;
@@ -60,6 +60,7 @@ fetch(testURL).then((response) => response.json()).then((jsonData) =>{
     pokeInfo.number = jsonData.id;
     console.log(pokemonSprite);
     const pokeImage = new Image();
+    pokeInfoDisplay.crossOrigin = 'Anonymous';
     pokeImage.onload = drawToCanvas;
     pokeImage.src = pokemonSprite;
 });
