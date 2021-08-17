@@ -1,4 +1,7 @@
-testURL = 'https://pokeapi.co/api/v2/pokemon/ditto';
+
+
+let pokeNumber = Math.floor(Math.random() * 151) + 1;
+let testURL = `https://pokeapi.co/api/v2/pokemon/${pokeNumber}`;
 
 const canvas = document.getElementById('main-canvas');
 const ctx = canvas.getContext('2d');
