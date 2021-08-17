@@ -7,24 +7,6 @@ const canvas = document.getElementById('main-canvas');
 const ctx = canvas.getContext('2d');
 
 
-// from https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
-function drawToCanvas() {
-    // Use the intrinsic size of image in CSS pixels for the canvas element
-    canvas.width = this.naturalWidth;
-    canvas.height = this.naturalHeight;
-    
-    // Will draw the image as 300x227, ignoring the custom size of 60x45
-    // given in the constructor
-    ctx.drawImage(this, 0, 0);
-
-
-    // To use the custom size we'll have to specify the scale parameters
-    // using the element's width and height properties - lets draw one
-    // on top in the corner:
-    //ctx.drawImage(this, 0, 0, this.width, this.height);
-}
-
-
 // from https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
 function canvasToSilhouette() {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -41,6 +23,30 @@ function canvasToSilhouette() {
     ctx.putImageData(imageData, 0, 0);
     // canvas.onclick = ctx.putImageData(originalImageData, 0, 0);
 }
+
+// from https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
+function drawToCanvas() {
+    // Use the intrinsic size of image in CSS pixels for the canvas element
+    canvas.width = this.naturalWidth;
+    canvas.height = this.naturalHeight;
+    
+    // Will draw the image as 300x227, ignoring the custom size of 60x45
+    // given in the constructor
+    ctx.drawImage(this, 0, 0);
+
+    canvasToSilhouette();
+
+    canvas.addEventListener('click', () => {
+        ctx.drawImage(this, 0, 0);
+    });
+    // To use the custom size we'll have to specify the scale parameters
+    // using the element's width and height properties - lets draw one
+    // on top in the corner:
+    //ctx.drawImage(this, 0, 0, this.width, this.height);
+}
+
+
+
 
 
 fetch(testURL).then((response) => response.json()).then((jsonData) =>{
