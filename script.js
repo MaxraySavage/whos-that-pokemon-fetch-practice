@@ -1,5 +1,8 @@
 testURL = 'https://pokeapi.co/api/v2/pokemon/ditto';
 
+const canvas = document.getElementById('main-canvas');
+const ctx = canvas.getContext('2d');
+
 
 // from https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
 function drawToCanvas() {
