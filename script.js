@@ -41,7 +41,10 @@ fetch(testURL).then((response) => response.json()).then((jsonData) =>{
     pokemonSprite = jsonData.sprites.front_default;
     console.log(pokemonSprite);
     const pokeImage = new Image();
-    pokeImage.onload = drawToCanvas;
+    pokeImage.onload = () => {
+        drawToCanvas();
+        canvas.save();
+    }
     pokeImage.src = pokemonSprite;
 
 });
