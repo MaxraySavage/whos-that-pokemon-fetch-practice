@@ -5,7 +5,11 @@ let testURL = `https://pokeapi.co/api/v2/pokemon/${pokeNumber}`;
 
 const canvas = document.getElementById('main-canvas');
 const ctx = canvas.getContext('2d');
-const pokeInfo = document.getElementById('poke-info-display');
+const pokeInfoDisplay = document.getElementById('poke-info-display');
+const pokeInfo = {
+    name: '',
+    number: '',
+};
 
 // from https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
 function canvasToSilhouette() {
@@ -38,6 +42,7 @@ function drawToCanvas() {
 
     canvas.addEventListener('click', () => {
         ctx.drawImage(this, 0, 0);
+        pokeInfoDisplay.innerText = `${pokeInfo.name}`;
     });
     // To use the custom size we'll have to specify the scale parameters
     // using the element's width and height properties - lets draw one
@@ -50,7 +55,9 @@ function drawToCanvas() {
 
 
 fetch(testURL).then((response) => response.json()).then((jsonData) =>{
-    pokemonSprite = jsonData.sprites.front_default;
+    const pokemonSprite = jsonData.sprites.front_default;
+    pokeInfo.name = jsonData.name;
+    pokeInfo.number = jsonData.id;
     console.log(pokemonSprite);
     const pokeImage = new Image();
     pokeImage.onload = drawToCanvas;
