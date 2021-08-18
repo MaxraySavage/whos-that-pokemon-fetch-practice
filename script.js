@@ -55,9 +55,6 @@ function drawToCanvas() {
 // working with CORS https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
 
 window.addEventListener('load', () => {
-    let w = window.innerWidth;
-    let h = window.innerHeight;
-    canvas.height = h * 0.8;
     fetch(testURL).then((response) => response.json()).then((jsonData) =>{
         const pokemonSprite = jsonData.sprites.front_default;
         pokeInfo.name = jsonData.name;
